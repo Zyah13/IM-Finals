@@ -1,0 +1,779 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+header {
+    background: linear-gradient(to right, blue, purple, red);
+    color: white;
+    padding: 5px 0;
+    text-align: center;
+    height: 112px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+}
+
+.header-container img.logo {
+    max-height: 80px;
+    margin: 0 10px 10px 10px;
+}
+
+.header-container h1 {
+    margin: 0 20px;
+}
+
+#main-content {
+    display: flex;
+    height: calc(100vh - 110px);
+}
+
+.dashboard {
+    width: 200px;
+    background: linear-gradient(to bottom, #000000c7, #605f5fbd);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: -40px;
+    color: white;
+    min-height: auto;
+    z-index: 1;
+}
+
+.dashboard h5 {
+    margin: 20px 0 0 0; 
+    color:#ffffff;
+}
+.dashboard a{
+    text-decoration:none;
+}
+
+#profile img {
+    display: block;
+    border-radius: 50px;
+    margin-top: 30px;
+}
+
+.adminbtn {
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-top: 15px;
+    cursor: pointer;
+    position: relative;
+}
+.adminbtn::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left:0;
+    width: 235px; 
+    height: 125%;
+    margin-left: -100px;
+    transition: background-color 0.3s ease-in-out; 
+    z-index: 2; 
+}
+.adminbtn:hover::after {
+    background-color: rgba(255, 255, 255, 0.271); 
+}
+
+
+.button-list {
+    list-style: none;
+    padding: 0;
+    margin: 35px 0 0 0;
+}
+
+.button-list li {
+    margin-bottom: 10px;
+}
+
+.button-list li .btn span{
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    text-align: left;
+}
+
+.button-list li .btn {
+    position: relative;
+    outline: none; 
+    border: none; 
+}
+.button-list li .btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px; 
+    height: 100%;
+    margin-left: -20px;
+    transition: background-color 0.3s ease-in-out; 
+}
+.button-list li .btn:hover::after {
+    background-color: rgba(255, 255, 255, 0.271); 
+}
+
+
+/* Container for the search bar */
+.search-bar {
+    position: absolute;
+    gap: 20px;
+    top: 125px; 
+    right: 25px; 
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    padding-left: 30px; 
+    border: solid 2px rgba(128, 128, 128, 0.562);
+    width: 250px;
+}
+.search-bar input[type="text"]:focus {
+    outline: none;  /* Remove the border color on focus */
+}
+
+.search-bar .fa-search {
+    position: absolute;
+    left: 10px;
+    bottom: 10px; 
+    color: #aaa;
+}
+
+/* Container for the table and buttons */
+.db-btn {
+    padding: 5px 20px;
+    border: none;
+    background-color: #3cb37285;
+    text-shadow: 2px 1px 2px #0000007d;
+    box-shadow: 2px 2px 2px #0000007d;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.db-btn i {
+    margin-right: 5px;
+}
+
+.db-btn:hover {
+    background-color: #0251188d;
+}
+
+
+#dashboard-cards {
+    display: flex;
+    position: absolute;
+    top:180px;
+    left:275px;
+    flex-wrap: wrap;
+}
+.card {
+    border-radius: 8px;
+    padding: 20px;
+    width: 30vw;
+    justify-content: space-between;
+    margin:30px;
+}
+.card:nth-child(2),
+.card:nth-child(4),
+.card:nth-child(6),
+.card:nth-child(8) {
+    margin-left: 62px; /* Adjusted margin between specified cards */
+}
+.card h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: white;
+}
+.card i {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: white;
+}
+.card .content-icon{
+    text-align:right;
+    padding-right: 10px;
+}
+
+/* Admin Panel Sidebar */
+.admin-panel {
+    position: absolute;
+    top: 15%;
+    left: 15.9%;
+    width: 0;
+    height: 85%;
+    background-color: rgb(225, 220, 220);
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+}
+
+.admin-panel.show {
+    width: 240px; 
+}
+
+.admin-sidebar {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    color: rgb(0, 0, 0);
+ 
+}
+.admin-sidebar-header {
+    padding-right: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-sidebar-header h4 {
+    margin: 5px;
+    font-weight: bold;
+
+}
+hr {
+    height: 2px;
+    background-color: #000; 
+    border: none; 
+    margin: 20px 0; 
+}
+.admin-sidebar-header i {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    color: #707072;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+.admin-sidebar-header i:hover{
+    color: #0000003e;
+}
+.admin-sidebar-content ul {
+    list-style: none;
+    padding: 0;
+}
+.admin-sidebar-content ul li a {
+    display: block;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-sidebar-content ul li a:hover {
+    background-color: rgba(129, 209, 132, 0.392);
+}
+
+
+/* dropdown Settings */
+.admin-sidebar-content .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 0; 
+    
+}
+
+.admin-sidebar-content .dropdown .dropdown-menu.show {
+    display: block;
+    padding: 10px;
+}
+
+.admin-sidebar-content .dropdown .dropdown-menu a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    
+}
+.admin-sidebar-content .dropdown.show ~ li:last-child {
+    margin-top: 50px;
+    padding: 20%;
+    font-style: italic;
+}
+
+
+
+.admin-sidebar-content .dropdown .dropdown-menu a:hover {
+    background-color: rgba(27, 204, 145, 0.33);
+}
+
+/* Class dasboard */
+#class-content {
+    display: flex;
+    height: calc(150vh - 10px);
+}
+
+/* CLASS Panel Sidebar */
+.class-panel {
+    position: absolute;
+    top: 15%;
+    left: 15.9%;
+    width: 0;
+    height: 152%;
+    background-color: rgb(225, 220, 220);
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+}
+
+.class-panel.show {
+    width: 240px; 
+}
+
+.class-sidebar {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    color: rgb(0, 0, 0);
+ 
+}
+.class-sidebar-header {
+    padding-right: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.class-sidebar-header h3 {
+    margin: 5px;
+    font-weight: bold;
+
+}
+.class-sidebar-header h5 {
+    margin: 5px;
+    font-weight: bold;
+    font-style: italic;
+
+}
+hr {
+    height: 2px;
+    background-color: #000; 
+    border: none; 
+    margin: 20px 0; 
+}
+.class-sidebar-header i {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    color: #707072;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+.class-sidebar-header i:hover{
+    color: #0000003e;
+}
+.class-sidebar-content ul {
+    list-style: none;
+    padding: 0;
+}
+.class-sidebar-content ul li a {
+    display: block;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: rgba(0, 0, 0, 0.888);
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.class-sidebar-content ul li a:hover {
+    background-color: rgba(129, 209, 132, 0.392);
+}
+
+/* Dropdown Class Section */
+.class-sidebar-content .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.class-sidebar-content ul li:hover .dropdown-menu {
+    display: block;
+}
+
+.class-sidebar-content .dropdown-menu li {
+    padding: 12px 16px;
+    text-decoration: none;
+    color: black;
+}
+
+.class-sidebar-content .dropdown-menu li:hover {
+    background-color: #f1f1f1;
+}
+
+
+.class-sidebar-content .fa{
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left:50px;
+    color: #0000008c;
+}
+
+/* grade level section dropdown */
+.dropdown-sections {
+    display: none;
+    padding-left: 20px;
+}
+.show-dropdown {
+    display: block;
+    background-color: rgba(91, 186, 91, 0.277);
+    margin-bottom: 20px;
+}
+
+
+/* Database Table */
+#teacher-content {
+    display: flex;
+    height: calc(500vh - 100px);
+   
+}
+#student-content {
+    display: flex;
+    height: calc(500vh - 100px);
+}
+.Info {
+    display: flex;
+    position: absolute;
+    top:180px;
+    left:510px;
+}
+.Info h1{
+    font-weight: bolder;
+    font-size: 45px;
+}
+.table-container{
+    top: 0;
+    text-align: center; 
+}
+.card-body{
+    display: flex;
+    position: absolute;
+    top:300px;
+    left:320px;
+} 
+table {
+    width: 200%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #3cb371;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+ /* custom styles */
+ .edit-mode input {
+    border: 1px solid #ccc;
+    padding: 2px;
+    width: 20px; /* Adjust width as needed */
+}
+
+.edit-mode .action-buttons {
+    display: none;
+}
+.action-buttons {
+    white-space: nowrap;
+}
+.action-buttons button, .action-buttons a {
+    margin-right: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #3cb37285;
+    box-shadow: 2px 2px 2px #0000007d;
+    color: #ff4500;
+}
+.action-buttons button:hover, .action-buttons a:hover {
+    background-color: #3cb372;
+}
+.editable {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* usersetting page */
+
+.admin-panel {
+    display: none;
+}
+
+.admin-panel.show {
+    display: block;
+}
+
+#create-user-panel,
+#change-password-panel {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 300px;
+}
+
+#change-password-panel {
+    margin-top: 20px;
+}
+
+  /* Tab styling */
+  .tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    width: 30%;
+    position: absolute;
+    top:35%;
+    left:45%;
+}
+
+/* rigth button gap */
+
+.tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    border-bottom: 2px solid #007bff;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    width: 30%;
+    position:absolute;
+    top:45%;
+    left:45%;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 5px 0;
+}
+
+form input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.form-actions .cancel-btn {
+    background-color: #f44336;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.804);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.649);
+    color: white;
+}
+.form-actions .cancel-btn:hover {
+    background-color: #ff6b5e; /* Slightly lighter red when hovered */
+}
+
+.form-actions .save-btn {
+    background-color: #007bff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.804);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.649);
+    color: white;
+}
+.form-actions .save-btn:hover {
+    background-color: #4ea8ed; /* Slightly lighter blue when hovered */
+}
+
+
+.form-actions .btn-edit {
+    background-color: #007bff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.804);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.649);
+    color: white;
+}
+
+.title{
+    display: flex;
+    position: absolute;
+    top:170px;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.312);
+    left:650px;
+}
+.title h4{
+    font-weight: bolder;
+}
+#user-content {
+    display: flex;
+    height: calc(150vh - 100px);
+}
+
+
+/* Student Account settings */
+.titles{
+    display: flex;
+    position: absolute;
+    top:170px;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.312);
+    left:550px;
+}
+.tabs {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    width: 30%;
+    position: absolute;
+    top:35%;
+    left:39%;
+}
+
+/* rigth button gap */
+
+.tabs button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tabs button:hover {
+    background-color: #ddd;
+}
+
+.tabs button.active {
+    border-bottom: 2px solid #007bff;
+}
+.tabs-content {
+    display: none;
+    padding: 20px;
+    width: 30%;
+    position:absolute;
+    top:45%;
+    left:38%;
+}
+
+.tabs-content.active {
+    display: block;
+}
+
+
+.forms-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.forms-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.forms-actions .cancel-btn {
+    background-color: #f44336;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.804);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.649);
+    color: white;
+}
+.forms-actions .cancel-btn:hover {
+    background-color: #ff6b5e; /* Slightly lighter red when hovered */
+}
+
+.forms-actions .save-btn {
+    background-color: #007bff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.804);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.649);
+    color: white;
+}
+.forms-actions .save-btn:hover {
+    background-color: #4ea8ed; /* Slightly lighter blue when hovered */
+}
+
+
+.forms-actions .btn-edit {
+    background-color: #007bff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.804);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.649);
+    color: white;
+}
+
+.admin-panels {
+    display: none;
+}
+
+.admin-panels.show {
+    display: block;
+}
+
+#create-user-panels,
+#change-password-panels {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 300px;
+}
+
+#change-password-panels {
+    margin-top: 20px;
+}
